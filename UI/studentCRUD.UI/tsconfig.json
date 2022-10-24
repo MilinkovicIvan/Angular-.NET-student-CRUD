@@ -21,6 +21,12 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    //IVAN, typeroots added for http service import
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@angular",
+      "node_modules/@angular/common/http"
     ]
   },
   "angularCompilerOptions": {
