@@ -1,0 +1,30 @@
+<div class="container my-5">
+  <h1 class="mb-3">Students</h1>
+  <!--create table if students array exist and is populated-->
+  <table class="table" *ngIf="students && students.length > 0">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Age</th>
+        <th>Faculty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--populate columns with student information from array-->
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.faculty }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--if students array doesnt exist or is not populated-->
+  <p *ngIf="!students || students.length <= 0">No students found</p>
+</div>
