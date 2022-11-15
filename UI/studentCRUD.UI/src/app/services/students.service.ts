@@ -14,12 +14,23 @@ export class StudentsService {
   //services
   //getAllStudents
   getAllStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(this.baseApiUrl + '/api/students')
+    return this.http.get<Student[]>(this.baseApiUrl + '/api/students');
 
   }
   //addStudent
   addStudent(addStudentRequest: Student): Observable<Student>{
     addStudentRequest.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<Student>(this.baseApiUrl + '/api/students', addStudentRequest)
+    return this.http.post<Student>(this.baseApiUrl + '/api/students', addStudentRequest);
   }
+
+  //viewStudent
+  viewStudent(id: string): Observable<Student> {
+    return this.http.get<Student>(this.baseApiUrl + '/api/students/' + id);
+  }
+
+  //updateStudent
+  updateStudent(id: string, updateStudentRequest: Student): Observable<Student> {
+    return this.http.put<Student>(this.baseApiUrl + '/api/students/' + id, updateStudentRequest);
+  }
+
 }

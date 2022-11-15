@@ -20,6 +20,7 @@ namespace studentCRUD.API.Controllers
 
 
         //methods
+        //get all students
         [HttpGet]
         public async Task<IActionResult> GetAllStudents()
         {
@@ -27,7 +28,7 @@ namespace studentCRUD.API.Controllers
 
             return Ok(students);
         }
-
+        //add student
         [HttpPost]
         public async Task<IActionResult> AddStudent([FromBody]Student studentRequest)
         {
@@ -37,6 +38,38 @@ namespace studentCRUD.API.Controllers
             await _studentCRUDDBContext.SaveChangesAsync();
 
             return Ok(studentRequest);
+        }
+        //get student
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetStudent([FromRoute]Guid id)
+        {
+            var student = await _studentCRUDDBContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+            if (student == null) { 
+                return NotFound();
+            }
+
+            return Ok(student);
+        }
+        //update student
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateStudent([FromRoute] Guid id, Student updateStudentRequest) {
+            var student = await _studentCRUDDBContext.Students.FindAsync(id);
+
+            if (student == null) {
+                return NotFound();
+            }
+
+            student.Id = updateStudentRequest.Id;
+            student.Name = updateStudentRequest.Name;
+            student.Email = updateStudentRequest.Email;
+            student.Phone = updateStudentRequest.Phone;
+            student.Age = updateStudentRequest.Age;
+            student.Faculty = updateStudentRequest.Faculty;
+
+            await _studentCRUDDBContext.SaveChangesAsync();
+            return Ok(student);        
         }
     }
 }

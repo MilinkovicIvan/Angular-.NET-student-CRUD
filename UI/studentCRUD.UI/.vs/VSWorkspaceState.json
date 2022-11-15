@@ -5,9 +5,11 @@
     "\\src\\app",
     "\\src\\app\\components",
     "\\src\\app\\components\\students",
-    "\\src\\app\\components\\students\\students-list",
-    "\\src\\app\\models"
+    "\\src\\app\\components\\students\\add-student",
+    "\\src\\app\\models",
+    "\\src\\app\\services",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\components\\students\\students-list\\students-list.component.html",
+  "SelectedNode": "\\src\\app\\components\\students\\add-student\\add-student.component.spec.ts",
   "PreviewInSolutionExplorer": false
 }

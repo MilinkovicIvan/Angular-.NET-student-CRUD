@@ -11,6 +11,7 @@
         <th>Phone</th>
         <th>Age</th>
         <th>Faculty</th>
+        <th> </th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td>{{ student.phone }}</td>
         <td>{{ student.age }}</td>
         <td>{{ student.faculty }}</td>
+        <td><a [routerLink]="['/students', 'edit', student.id ]">View</a></td>
       </tr>
     </tbody>
   </table>
