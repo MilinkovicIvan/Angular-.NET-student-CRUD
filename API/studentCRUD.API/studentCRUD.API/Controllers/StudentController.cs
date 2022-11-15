@@ -30,7 +30,7 @@ namespace studentCRUD.API.Controllers
         }
         //add student
         [HttpPost]
-        public async Task<IActionResult> AddStudent([FromBody]Student studentRequest)
+        public async Task<IActionResult> AddStudent([FromBody] Student studentRequest)
         {
             studentRequest.Id = Guid.NewGuid();
 
@@ -42,10 +42,11 @@ namespace studentCRUD.API.Controllers
         //get student
         [HttpGet]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> GetStudent([FromRoute]Guid id)
+        public async Task<IActionResult> GetStudent([FromRoute] Guid id)
         {
             var student = await _studentCRUDDBContext.Students.FirstOrDefaultAsync(x => x.Id == id);
-            if (student == null) { 
+            if (student == null)
+            {
                 return NotFound();
             }
 
@@ -54,10 +55,12 @@ namespace studentCRUD.API.Controllers
         //update student
         [HttpPut]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> UpdateStudent([FromRoute] Guid id, Student updateStudentRequest) {
+        public async Task<IActionResult> UpdateStudent([FromRoute] Guid id, Student updateStudentRequest)
+        {
             var student = await _studentCRUDDBContext.Students.FindAsync(id);
 
-            if (student == null) {
+            if (student == null)
+            {
                 return NotFound();
             }
 
@@ -69,7 +72,24 @@ namespace studentCRUD.API.Controllers
             student.Faculty = updateStudentRequest.Faculty;
 
             await _studentCRUDDBContext.SaveChangesAsync();
-            return Ok(student);        
+            return Ok(student);
+        }
+        //deleteStudent
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteStudent([FromRoute] Guid id)
+        {
+            var student = await _studentCRUDDBContext.Students.FindAsync(id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            _studentCRUDDBContext.Students.Remove(student);
+            await _studentCRUDDBContext.SaveChangesAsync();
+
+            return Ok(student);
         }
     }
 }

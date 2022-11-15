@@ -43,7 +43,16 @@ export class EditStudentComponent implements OnInit {
     this.studentService.updateStudent(this.studentInfo.id, this.studentInfo).subscribe({
       next: (student) => {
         //console.log(student)
-        this.router.navigate(['students'])
+        this.router.navigate(['students']);
+      }
+    });
+  }
+
+  //deleteStudent
+  deleteStudent(id: string) {
+    this.studentService.deleteStudent(id).subscribe({
+      next: (response) => {
+        this.router.navigate(['students']);
       }
     });
   }
